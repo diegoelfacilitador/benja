@@ -20,6 +20,7 @@ const navItems = [
   { href: "/operativo", label: "Operativo", icon: CheckSquare },
   { href: "/financiero", label: "Financiero", icon: DollarSign },
   { href: "/centro", label: "Centro", icon: MessageSquare },
+  { href: "/el-centro", label: "El Centro GTM", icon: ClipboardList },
 ]
 
 export default function HubLayout({ children }: { children: React.ReactNode }) {
