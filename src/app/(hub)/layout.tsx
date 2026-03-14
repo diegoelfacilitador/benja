@@ -11,6 +11,7 @@ import {
   CheckSquare,
   DollarSign,
   MessageSquare,
+  BarChart3,
   LogOut,
 } from "lucide-react"
 
@@ -21,6 +22,7 @@ const navItems = [
   { href: "/financiero", label: "Financiero", icon: DollarSign },
   { href: "/centro", label: "Centro", icon: MessageSquare },
   { href: "/el-centro", label: "El Centro GTM", icon: ClipboardList },
+  { href: "/gestion", label: "Gestión", icon: BarChart3 },
 ]
 
 export default function HubLayout({ children }: { children: React.ReactNode }) {
@@ -45,7 +47,7 @@ export default function HubLayout({ children }: { children: React.ReactNode }) {
         <nav className="flex-1 p-4 space-y-1">
           {navItems.map((item) => {
             const Icon = item.icon
-            const isActive = pathname === item.href
+            const isActive = item.href === "/dashboard" ? pathname === item.href : pathname.startsWith(item.href)
             return (
               <Link
                 key={item.href}
