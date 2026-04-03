@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brandbook — Escuela de Facilitadores</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,400;1,700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1E58F0;--black:#111;--gray-900:#1a1a1a;--gray-800:#222;--gray-700:#333;--gray-600:#555;--gray-500:#777;--gray-400:#999;--gray-300:#bbb;--gray-200:#ddd;--gray-100:#f0f0f0;--white:#fff;--radius:8px;--font:'Ubuntu',sans-serif;--mono:'Ubuntu Mono',monospace}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--black);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(17,17,17,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between}
+nav .brand{color:var(--white);font-weight:700;font-size:.95rem;letter-spacing:-.02em}
+nav ul{list-style:none;display:flex;gap:1.5rem}
+nav a{color:var(--gray-400);text-decoration:none;font-size:.8rem;font-weight:500;transition:color .2s}
+nav a:hover{color:var(--white)}
+
+/* SECTIONS */
+section{padding:6rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:var(--blue);font-weight:700;margin-bottom:.5rem}
+.section-title{font-size:2rem;font-weight:700;letter-spacing:-.03em;margin-bottom:.5rem}
+.section-sub{color:var(--gray-500);font-size:.95rem;max-width:560px;margin-bottom:2.5rem}
+.dark{background:var(--gray-900);color:var(--white)}
+.dark .section-sub{color:var(--gray-400)}
+
+/* COVER */
+#cover{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:var(--black);color:var(--white);padding-top:56px;position:relative;overflow:hidden}
+#cover::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(30,88,240,.25),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+#cover h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;letter-spacing:-.04em;line-height:1.1;margin-bottom:1rem;position:relative}
+#cover h1 span{color:var(--blue)}
+#cover p{color:var(--gray-400);font-size:1.1rem;max-width:480px;margin:0 auto;position:relative}
+.cover-version{margin-top:2rem;font-family:var(--mono);font-size:.75rem;color:var(--gray-600);position:relative}
+
+/* LOGO */
+.logo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:1rem}
+.logo-card{background:var(--gray-100);border-radius:var(--radius);padding:2.5rem;display:flex;align-items:center;justify-content:center;min-height:180px;border:1px solid var(--gray-200)}
+.logo-card.dark-card{background:var(--gray-900);border-color:var(--gray-700)}
+.logo-card svg{width:160px;height:auto}
+.logo-rules{margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.logo-rules p{font-size:.85rem;color:var(--gray-600);padding:.75rem 1rem;background:var(--gray-100);border-radius:var(--radius);border-left:3px solid var(--blue)}
+
+/* ICONS */
+.icon-tabs{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.icon-tab{padding:.45rem 1rem;border-radius:100px;border:1px solid var(--gray-700);background:transparent;color:var(--gray-400);font-family:var(--font);font-size:.8rem;cursor:pointer;transition:all .2s}
+.icon-tab.active,.icon-tab:hover{background:var(--blue);color:var(--white);border-color:var(--blue)}
+.icon-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1.25rem}
+.icon-item{text-align:center}
+.icon-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:1.25rem;display:flex;align-items:center;justify-content:center;aspect-ratio:1;margin-bottom:.5rem;transition:border-color .2s}
+.icon-box:hover{border-color:var(--blue)}
+.icon-box svg{width:28px;height:28px}
+.icon-name{font-size:.7rem;color:var(--gray-400);font-family:var(--mono)}
+.icon-group{display:none}.icon-group.active{display:grid}
+
+/* COLORS */
+.color-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1.25rem}
+.color-card{border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+.color-swatch{height:100px}
+.color-info{padding:.75rem;background:rgba(255,255,255,.04)}
+.color-info strong{display:block;font-size:.85rem;margin-bottom:.15rem}
+.color-info code{font-family:var(--mono);font-size:.75rem;color:var(--gray-400)}
+
+/* TYPOGRAPHY */
+.type-scale{width:100%;border-collapse:collapse;margin-top:1rem}
+.type-scale th{text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-500);padding:.75rem 1rem;border-bottom:1px solid var(--gray-200)}
+.type-scale td{padding:.75rem 1rem;border-bottom:1px solid var(--gray-100);vertical-align:middle}
+.type-scale .preview{font-weight:700;letter-spacing:-.02em}
+.type-scale code{font-family:var(--mono);font-size:.75rem;color:var(--gray-500);background:var(--gray-100);padding:.15rem .4rem;border-radius:4px}
+
+/* COMPONENTS */
+.comp-group{margin-bottom:3rem}
+.comp-group h3{font-size:1rem;font-weight:600;margin-bottom:1rem;color:var(--gray-600)}
+.comp-row{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-bottom:1.5rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.6rem 1.5rem;border-radius:100px;font-family:var(--font);font-size:.85rem;font-weight:600;border:2px solid transparent;cursor:pointer;transition:all .2s;text-decoration:none}
+.btn-primary{background:var(--blue);color:var(--white);border-color:var(--blue)}
+.btn-primary:hover{background:#1648cc}
+.btn-outline{background:transparent;color:var(--blue);border-color:var(--blue)}
+.btn-outline:hover{background:var(--blue);color:var(--white)}
+.btn-dark{background:var(--black);color:var(--white);border-color:var(--black)}
+.btn-sm{padding:.4rem 1rem;font-size:.78rem}
+.btn-lg{padding:.75rem 2rem;font-size:1rem}
+.badge{display:inline-block;padding:.25rem .7rem;border-radius:100px;font-size:.72rem;font-weight:600;font-family:var(--font)}
+.badge-blue{background:rgba(30,88,240,.12);color:var(--blue)}
+.badge-dark{background:var(--gray-100);color:var(--gray-700)}
+.badge-success{background:rgba(34,197,94,.12);color:#16a34a}
+.input-demo{padding:.6rem 1rem;border:1.5px solid var(--gray-200);border-radius:var(--radius);font-family:var(--font);font-size:.85rem;width:280px;outline:none;transition:border-color .2s}
+.input-demo:focus{border-color:var(--blue)}
+.select-demo{padding:.6rem 1rem;border:1.5px solid var(--gray-200);border-radius:var(--radius);font-family:var(--font);font-size:.85rem;width:200px;outline:none;background:var(--white)}
+
+/* FOOTER */
+footer{background:var(--black);color:var(--gray-500);padding:3rem 2rem;text-align:center;font-size:.8rem}
+footer strong{color:var(--white)}
+
+@media(max-width:768px){
+  .logo-grid,.icon-grid{grid-template-columns:repeat(2,1fr)}
+  .logo-rules{grid-template-columns:1fr}
+  nav ul{display:none}
+  section{padding:4rem 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="brand">EdF Brandbook</div>
+  <ul>
+    <li><a href="#cover">Inicio</a></li>
+    <li><a href="#logo">Logo</a></li>
+    <li><a href="#icons">Iconos</a></li>
+    <li><a href="#colors">Colores</a></li>
+    <li><a href="#typography">Tipografia</a></li>
+    <li><a href="#components">Componentes</a></li>
+  </ul>
+</nav>
+
+<!-- COVER -->
+<section id="cover">
+  <div>
+    <h1>Escuela de<br><span>Facilitadores</span></h1>
+    <p>Guia de identidad visual y sistema de diseno para mantener una marca coherente y profesional.</p>
+    <div class="cover-version">v2.0 — Abril 2026</div>
+  </div>
+</section>
+
+<!-- LOGO -->
+<section id="logo">
+  <div class="container">
+    <div class="section-label">01 / Logo</div>
+    <div class="section-title">Marca principal</div>
+    <p class="section-sub">El logo se compone de un isotipo geometrico y la tipografia Ubuntu Bold. Se debe respetar el area de proteccion minima equivalente a la altura de la letra "E".</p>
+    <div class="logo-grid">
+      <div class="logo-card">
+        <svg viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="10" width="40" height="40" rx="8" fill="#1E58F0"/>
+          <circle cx="22" cy="30" r="10" fill="#fff"/>
+          <text x="52" y="38" font-family="Ubuntu" font-weight="700" font-size="18" fill="#111">Escuela de F.</text>
+        </svg>
+      </div>
+      <div class="logo-card dark-card">
+        <svg viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="10" width="40" height="40" rx="8" fill="#1E58F0"/>
+          <circle cx="22" cy="30" r="10" fill="#1a1a1a"/>
+          <text x="52" y="38" font-family="Ubuntu" font-weight="700" font-size="18" fill="#fff">Escuela de F.</text>
+        </svg>
+      </div>
+      <div class="logo-card" style="background:#1E58F0;border-color:#1E58F0">
+        <svg viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="10" width="40" height="40" rx="8" fill="#fff"/>
+          <circle cx="22" cy="30" r="10" fill="#1E58F0"/>
+          <text x="52" y="38" font-family="Ubuntu" font-weight="700" font-size="18" fill="#fff">Escuela de F.</text>
+        </svg>
+      </div>
+    </div>
+    <div class="logo-rules">
+      <p><strong>Espacio minimo:</strong> Mantener 1x de margen alrededor del logo, donde x = altura de la "E".</p>
+      <p><strong>Tamano minimo:</strong> No reducir a menos de 32px de alto en digital o 12mm en impresion.</p>
+      <p><strong>No distorsionar:</strong> Nunca estirar, rotar o cambiar las proporciones del logo.</p>
+      <p><strong>No recolorear:</strong> Usar solo las versiones aprobadas sobre fondos permitidos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ICONS -->
+<section id="icons" class="dark">
+  <div class="container">
+    <div class="section-label">02 / Iconografia</div>
+    <div class="section-title">Sistema de iconos</div>
+    <p class="section-sub">Iconos de trazo (stroke 2px), esquinas redondeadas, estilo lineal consistente. Organizados por categoria funcional.</p>
+    <div class="icon-tabs">
+      <button class="icon-tab active" data-tab="general">General</button>
+      <button class="icon-tab" data-tab="comunidad">Comunidad</button>
+    </div>
+
+    <div class="icon-group active icon-grid" id="tab-general">
+      <div class="icon-item"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#1E58F0" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><span class="icon-name">inicio</span></div>
+      <div class="icon-item"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#1E58F0" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><span class="icon-name">buscar</span></div>
+      <div class="icon-item"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#1E58F0" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div><span class="icon-name">ajustes</span></div>
+      <div class="icon-item"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#1E58F0" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div><span class="icon-name">agregar</span></div>
+      <div class="icon-item"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#1E58F0" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><span class="icon-name">editar</span></div>
+      <div class="icon-item"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#1E58F0" stroke-width="2" stroke-linecap="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div><span class="icon-name">alertas</span></div>
+      <div class="icon-item"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#1E58F0" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="icon-name">check</span></div>
+    </div>
+
+    <div class="icon-group icon-grid" id="tab-comunidad">
+      <div class="icon-item"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#1E58F0" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><span class="icon-name">grupo</span></div>
+      <div class="icon-item"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#1E58F0" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><span class="icon-name">persona</span></div>
+      <div class="icon-item"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#1E58F0" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><span class="icon-name">mensaje</span></div>
+      <div class="icon-item"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#1E58F0" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><span class="icon-name">favorito</span></div>
+      <div class="icon-item"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#1E58F0" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><span class="icon-name">estrella</span></div>
+      <div class="icon-item"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#1E58F0" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg></div><span class="icon-name">recursos</span></div>
+      <div class="icon-item"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#1E58F0" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div><span class="icon-name">libro</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- COLORS -->
+<section id="colors" class="dark" style="background:#111">
+  <div class="container">
+    <div class="section-label">03 / Colores</div>
+    <div class="section-title">Paleta de color</div>
+    <p class="section-sub">El azul primario transmite confianza y energia. Se complementa con una escala de grises neutros para jerarquia visual.</p>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#1E58F0"></div>
+        <div class="color-info"><strong>Azul Primario</strong><code>#1E58F0</code></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#1648cc"></div>
+        <div class="color-info"><strong>Azul Oscuro</strong><code>#1648CC</code></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#5B8AF5"></div>
+        <div class="color-info"><strong>Azul Claro</strong><code>#5B8AF5</code></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#111"></div>
+        <div class="color-info"><strong>Negro</strong><code>#111111</code></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#333"></div>
+        <div class="color-info"><strong>Gris 700</strong><code>#333333</code></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#555"></div>
+        <div class="color-info"><strong>Gris 600</strong><code>#555555</code></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#999"></div>
+        <div class="color-info"><strong>Gris 400</strong><code>#999999</code></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#ddd"></div>
+        <div class="color-info"><strong>Gris 200</strong><code>#DDDDDD</code></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#f0f0f0"></div>
+        <div class="color-info"><strong>Gris 100</strong><code>#F0F0F0</code></div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#fff;border-bottom:1px solid rgba(255,255,255,.1)"></div>
+        <div class="color-info"><strong>Blanco</strong><code>#FFFFFF</code></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section id="typography">
+  <div class="container">
+    <div class="section-label">04 / Tipografia</div>
+    <div class="section-title">Escala tipografica</div>
+    <p class="section-sub">Ubuntu como familia principal para titulos y cuerpo. Ubuntu Mono para datos, codigo y etiquetas tecnicas.</p>
+    <table class="type-scale">
+      <thead>
+        <tr><th>Estilo</th><th>Fuente</th><th>Peso</th><th>Tamano</th><th>Ejemplo</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>Display</code></td><td>Ubuntu</td><td>700</td><td>3.5rem / 56px</td>
+          <td class="preview" style="font-size:2rem">Facilitadores</td>
+        </tr>
+        <tr>
+          <td><code>H1</code></td><td>Ubuntu</td><td>700</td><td>2.5rem / 40px</td>
+          <td class="preview" style="font-size:1.6rem">Titulo principal</td>
+        </tr>
+        <tr>
+          <td><code>H2</code></td><td>Ubuntu</td><td>700</td><td>2rem / 32px</td>
+          <td class="preview" style="font-size:1.3rem">Subtitulo</td>
+        </tr>
+        <tr>
+          <td><code>H3</code></td><td>Ubuntu</td><td>600</td><td>1.5rem / 24px</td>
+          <td class="preview" style="font-size:1.1rem;font-weight:600">Encabezado tres</td>
+        </tr>
+        <tr>
+          <td><code>Body</code></td><td>Ubuntu</td><td>400</td><td>1rem / 16px</td>
+          <td style="font-size:1rem">Texto de parrafo normal con buena legibilidad.</td>
+        </tr>
+        <tr>
+          <td><code>Small</code></td><td>Ubuntu</td><td>400</td><td>0.875rem / 14px</td>
+          <td style="font-size:.875rem;color:var(--gray-500)">Texto auxiliar y notas al pie.</td>
+        </tr>
+        <tr>
+          <td><code>Caption</code></td><td>Ubuntu</td><td>500</td><td>0.75rem / 12px</td>
+          <td style="font-size:.75rem;color:var(--gray-400);text-transform:uppercase;letter-spacing:.1em">Etiqueta</td>
+        </tr>
+        <tr>
+          <td><code>Mono</code></td><td>Ubuntu Mono</td><td>400</td><td>0.875rem / 14px</td>
+          <td style="font-family:var(--mono);font-size:.875rem;color:var(--blue)">const facilitador = true;</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<section id="components" style="background:var(--gray-100)">
+  <div class="container">
+    <div class="section-label">05 / Componentes</div>
+    <div class="section-title">UI Kit basico</div>
+    <p class="section-sub">Botones, badges e inputs con los estilos de la marca. Todos usan border-radius completo (pill) o 8px segun el tipo.</p>
+
+    <div class="comp-group">
+      <h3>Botones</h3>
+      <div class="comp-row">
+        <button class="btn btn-primary">Primario</button>
+        <button class="btn btn-outline">Outline</button>
+        <button class="btn btn-dark">Oscuro</button>
+      </div>
+      <div class="comp-row">
+        <button class="btn btn-primary btn-sm">Pequeno</button>
+        <button class="btn btn-primary">Normal</button>
+        <button class="btn btn-primary btn-lg">Grande</button>
+      </div>
+    </div>
+
+    <div class="comp-group">
+      <h3>Badges</h3>
+      <div class="comp-row">
+        <span class="badge badge-blue">Nuevo</span>
+        <span class="badge badge-dark">Default</span>
+        <span class="badge badge-success">Activo</span>
+        <span class="badge badge-blue">Facilitador</span>
+        <span class="badge badge-dark">Borrador</span>
+      </div>
+    </div>
+
+    <div class="comp-group">
+      <h3>Inputs</h3>
+      <div class="comp-row">
+        <input type="text" class="input-demo" placeholder="Nombre completo">
+        <input type="email" class="input-demo" placeholder="correo@ejemplo.com">
+        <select class="select-demo"><option>Seleccionar rol</option><option>Facilitador</option><option>Participante</option></select>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p><strong>Escuela de Facilitadores</strong> — Brandbook v2.0</p>
+    <p style="margin-top:.5rem">Documento interno de identidad visual. No distribuir sin autorizacion.</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.icon-tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.icon-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.icon-group').forEach(g=>g.classList.remove('active'));
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
